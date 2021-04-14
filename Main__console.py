@@ -81,6 +81,8 @@ if __name__ == "__main__":
     
     print("-----------------------------------")
     print("GAME OVER!")
+
+    print("Session Stats:")
     print(session_user)
 
     ## Plot results

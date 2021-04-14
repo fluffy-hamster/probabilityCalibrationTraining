@@ -78,3 +78,13 @@ class SessionUser():
     def update(self, probability: float, correct:bool):
         self._data.setdefault(probability, {True: 0, False: 0})
         self._data[probability][correct] += 1
+
+    def __str__(self):
+        r = []
+        for item in sorted(self._data.keys()):
+            correct, incorrect = self._data[item][True], self._data[item][False]
+            acc = round(correct / (correct + incorrect),2)
+            s = f"{item:4} | Accuracy: {acc:5}% (diff {round(acc-item,2):5}% ) | correct: {correct:3}, incorrect: {incorrect:3}" 
+            r.append(s)
+
+        return "\n".join(r)
