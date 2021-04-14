@@ -1,5 +1,4 @@
 """
-
 EXAMPLE DATA:
 
  {'category': 'Celebrities',
@@ -59,7 +58,7 @@ EXAMPLE SessionUser:
     0.80: {True: 8, False: 2},
     0.99: {True: 99, False: 1}
     }
-    
+
 """
 
 class SessionUser():
@@ -79,4 +78,3 @@ class SessionUser():
     def update(self, probability: float, correct:bool):
         self._data.setdefault(probability, {True: 0, False: 0})
         self._data[probability][correct] += 1
-
