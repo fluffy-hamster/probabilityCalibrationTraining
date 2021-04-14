@@ -90,7 +90,7 @@ class SessionUser():
         for item in sorted(self._data.keys()):
             correct, incorrect = self._data[item][True], self._data[item][False]
             acc = correct / (correct + incorrect)
-            s = f"{item:4} | Accuracy: {acc:.2f}% (diff {"+" if acc-item >=0 else ""}{acc-item:.2f}%) | correct: {correct:2}, incorrect: {incorrect:2}" 
+            s = f"{item:4} | Accuracy: {acc:.2f}% (diff {'+' if acc-item >=0 else ''}{acc-item:.2f}%) | correct: {correct:2}, incorrect: {incorrect:2}" 
             r.append(s)
 
         return "\n".join(r)

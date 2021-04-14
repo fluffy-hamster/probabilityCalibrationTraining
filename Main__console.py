@@ -1,7 +1,7 @@
 import sys
 from typing import Dict
 
-import HelperFunctions 
+from HelperFunctions import get_questions, generate_probabilities, plot_user_data
 from DataSchema import SessionUser, Question
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     print("\n")
     
 
-    response = HelperFunctions.get_questions(num_of_questions)
+    response = get_questions(num_of_questions)
     if response is not None:
         questions: Dict[int, Question] = {i: Question(v) for i, v in enumerate(response)}
     else:
@@ -31,7 +31,7 @@ if __name__ == "__main__":
         question = questions[question_idx]
     
         
-        probabilities = HelperFunctions.generate_probabilities(len(question.awnser_list), PROBABILITY_OPTIONS)
+        probabilities = generate_probabilities(len(question.awnser_list), PROBABILITY_OPTIONS)
 
         ## Ask Question
         print("======================")
@@ -86,4 +86,8 @@ if __name__ == "__main__":
     print(session_user)
 
     ## Plot results
-    plot_accuracy(session_user, 7)
+    session_plot = plot_user_data(session_user, 7)
+    session_plot.show()
+
+    input("Press 'Enter' to exit")
+    sys.exit(0)

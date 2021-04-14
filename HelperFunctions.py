@@ -35,15 +35,21 @@ def plot_user_data(userdata: SessionUser, plot_size:int):
     Bars below the dots suggests over-confidence bias, bars above dot suggests under-confidence bias.
     """
 
-    fig = plt.figure(figsize=(plot_size,plot_size))
-    ax = fig.add_axes([0,0,1,1])
+    fig, ax = plt.subplots(figsize=(plot_size,plot_size))
 
-    #x = ["0.0", "0.1", "0.2", "0.3","0.4","0.5","0.6","0.7", "0.8", "0.9", "1.0" ] 
     x = list(map(str, sorted(userdata.data.keys())))
     y = [round(userdata.data[i][True] / (userdata.data[i][True] + userdata.data[i][False]), 2) for i in sorted(userdata.data.keys())]
 
+
     ax.set_ylim([0, 1]) # accuracy as %
-    ax.plot(x, [float(i) for i in x], color="red",linewidth=4,linestyle="None", marker="o", markersize=plot_size)
+    ax.plot(x, [float(i) for i in x], color="red",linestyle="None", marker="o", markersize=plot_size)
+
+
+
     ax.bar(x, y, color="grey")
+
+    plt.title('accuracy of predictions'.title())
+
+
 
     return fig
