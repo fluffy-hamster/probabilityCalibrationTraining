@@ -86,4 +86,4 @@ if __name__ == "__main__":
     print(session_user)
 
     ## Plot results
-    #plot_accuracy(user, 7)
+    plot_accuracy(session_user, 7)

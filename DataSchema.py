@@ -1,3 +1,10 @@
+import urllib.parse
+from dataclasses import dataclass
+from random import shuffle
+from typing import Dict, Any, List
+
+#region Question
+
 """
 EXAMPLE DATA:
 
@@ -15,11 +22,6 @@ EXAMPLE DATA:
   'correct_answer': 'December%206th',
   'incorrect_answers': ['January%202nd', 'November%2012th', 'February%208th']}]
 """
-
-import urllib.parse
-from dataclasses import dataclass
-from random import shuffle
-from typing import Dict, Any, List
 
 @dataclass
 class Question():
@@ -47,6 +49,10 @@ class Question():
     @property
     def awnser_list(self) -> List[str]:
         return self._awnser_list
+
+#endregion
+
+#region SessionUser
 
 """
 EXAMPLE SessionUser:
@@ -84,7 +90,9 @@ class SessionUser():
         for item in sorted(self._data.keys()):
             correct, incorrect = self._data[item][True], self._data[item][False]
             acc = correct / (correct + incorrect)
-            s = f"{item:4} | Accuracy: {acc:.2f}% (diff {acc-item:.2f}% ) | correct: {correct:3}, incorrect: {incorrect:3}" 
+            s = f"{item:4} | Accuracy: {acc:.2f}% (diff {"+" if acc-item >=0 else ""}{acc-item:.2f}%) | correct: {correct:2}, incorrect: {incorrect:2}" 
             r.append(s)
 
         return "\n".join(r)
+
+#endregion
