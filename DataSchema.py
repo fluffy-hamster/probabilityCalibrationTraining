@@ -83,8 +83,8 @@ class SessionUser():
         r = []
         for item in sorted(self._data.keys()):
             correct, incorrect = self._data[item][True], self._data[item][False]
-            acc = round(correct / (correct + incorrect),2)
-            s = f"{item:4} | Accuracy: {acc:5}% (diff {round(acc-item,2):5}% ) | correct: {correct:3}, incorrect: {incorrect:3}" 
+            acc = correct / (correct + incorrect)
+            s = f"{item:4} | Accuracy: {acc:.2f}% (diff {acc-item:.2f}% ) | correct: {correct:3}, incorrect: {incorrect:3}" 
             r.append(s)
 
         return "\n".join(r)
