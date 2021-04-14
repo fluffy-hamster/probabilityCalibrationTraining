@@ -79,12 +79,14 @@ if __name__ == "__main__":
         print("\nMoving on to next question...\n")
         
     
-    print("-----------------------------------")
+    
     print("GAME OVER!")
 
+    print("-----------------------------------")
     print("Session Stats:")
-    print(session_user)
-
+    print(f"\tFinal Score: {score}")
+    print("\t" + str(session_user).replace("\n", "\n\t"))
+    print("-----------------------------------")
     ## Plot results
     session_plot = plot_user_data(session_user, 7)
     session_plot.show()

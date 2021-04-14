@@ -43,13 +43,18 @@ def plot_user_data(userdata: SessionUser, plot_size:int):
 
     ax.set_ylim([0, 1]) # accuracy as %
     ax.plot(x, [float(i) for i in x], color="red",linestyle="None", marker="o", markersize=plot_size)
-
-
-
     ax.bar(x, y, color="grey")
 
-    plt.title('accuracy of predictions'.title())
+    plt.title("accuracy of predictions".title())
+    ax.set_ylabel("percentage of correct awnsers")
+    ax.set_xlabel("probabilities assigned to questions")
 
+    ## Add numbers to bars
+    #for i, v in enumerate(y):
+    #    ax.text(v, 
+    #            i, 
+    #            6, 
+    #            fontsize=plot_size)
 
 
     return fig
