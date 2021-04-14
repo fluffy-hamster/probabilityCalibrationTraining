@@ -48,3 +48,35 @@ class Question():
     @property
     def awnser_list(self) -> List[str]:
         return self._awnser_list
+
+"""
+EXAMPLE SessionUser:
+
+    {
+    0.1: {True: 1, False: 4},
+    0.5: {True: 2, False: 2}, 
+    0.6: {True: 4, False: 1}, 
+    0.80: {True: 8, False: 2},
+    0.99: {True: 99, False: 1}
+    }
+    
+"""
+
+class SessionUser():
+
+    def __init__(self, username):
+        self._username = username
+        self._data = dict()
+
+    @property
+    def username(self) -> str:
+        return self._username
+
+    @property
+    def data(self):
+        return self._data
+
+    def update(self, probability: float, correct:bool):
+        self._data.setdefault(probability, {True: 0, False: 0})
+        self._data[probability][correct] += 1
+
