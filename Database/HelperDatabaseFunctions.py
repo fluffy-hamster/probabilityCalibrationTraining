@@ -16,6 +16,5 @@ CREATE TABLE INTERVAL
 '''
 
 
-def connect_to_database(db_name: str) -> sqlite3.Cursor:
-    conn = sqlite3.connect('f{db_name}.db')
-    return conn.cursor()
+def connect_to_database(db_name: str):
+    return sqlite3.connect(f'{db_name}.db')
