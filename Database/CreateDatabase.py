@@ -9,7 +9,6 @@ if __name__ == "__main__":
     
     cursor.execute(CREATE_USER_TABLE_SCHEMA)
     cursor.execute(CREATE_SESSION_TABLE_SCHEMA)
-    cursor.execute(CREATE_INTERVAL_TABLE_SCHEMA)
 
     conn.commit()
 
