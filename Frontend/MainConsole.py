@@ -10,7 +10,7 @@ from typing import Dict
 
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
 from Backend.SessionUser import SessionUser
-#from Backend.Question import Question
+from Backend.Question import Question
 
 
 if __name__ == "__main__":
