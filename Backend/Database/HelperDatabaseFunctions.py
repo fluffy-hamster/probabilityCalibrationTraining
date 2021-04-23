@@ -1,19 +1,23 @@
 import sqlite3
 
-CREATE_USER_TABLE_SCHEMA = '''
-CREATE TABLE USER
+USER_TABLE_SCHEMA = '''
+CREATE TABLE User
 (
-    [UserId] INTEGER PRIMARY KEY, 
-    [username] TEXT
+    userId INTEGER PRIMARY KEY, 
+    username TEXT
 )
 '''
 
-CREATE_SESSION_TABLE_SCHEMA = '''
-CREATE TABLE SESSION 
+SESSION_TABLE_SCHEMA = '''
+CREATE TABLE Session 
 (
-    [interval(%)] DECIMAL PRIMARY KEY,
-    [CorrectAnswers] INTEGER, 
-    [WrongAnswers] INTEGER
+    id INTEGER PRIMARY KEY,
+    sessionId INTEGER,
+    userId INTEGER,
+    interval DECIMAL,
+    correctAnswers INTEGER, 
+    wrongAnswers INTEGER,
+    FOREIGN KEY(userId) REFERENCES User(UserId)
 )
 '''
 #FOREIGN KEY UserId REFERENCES USER(UserId)
