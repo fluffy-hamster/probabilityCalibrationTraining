@@ -12,13 +12,13 @@ if __name__ == "__main__":
     username = input("Username: ")
     session_user = SessionUser(username)
     
-    num_of_questions = int(input("Number of Questions: "))
+    number_of_questions = int(input("Number of Questions: "))
     score = 0
     
     print("\n")
     
 
-    response = get_questions(num_of_questions)
+    response = get_questions(number_of_questions)
     if response is not None:
         questions: Dict[int, Question] = {i: Question(v) for i, v in enumerate(response)}
     else:
@@ -26,7 +26,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     question_idx = 0
-    while question_idx < num_of_questions:
+    while question_idx < number_of_questions:
     
         question = questions[question_idx]
     
@@ -87,6 +87,7 @@ if __name__ == "__main__":
     print(f"\tFinal Score: {score}")
     print("\t" + str(session_user).replace("\n", "\n\t"))
     print("-----------------------------------")
+
     ## Plot results
     session_plot = plot_user_data(session_user, 7)
     session_plot.show()
