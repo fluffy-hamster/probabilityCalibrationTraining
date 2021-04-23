@@ -4,19 +4,19 @@ import requests
 import json
 import matplotlib.pyplot as plt
 
-from DataSchema import SessionUser
+from .SessionUser import SessionUser
 
 def generate_probabilities(awnser_count:int, num_options:int) -> List[float]:
     return [round(i, 2) for i in linspace(1/awnser_count, 1, num_options)]
     
 
-def get_questions(num_qu:int) -> Optional[List[Dict[str, Any]]]:
+def get_questions(number_of_questions:int) -> Optional[List[Dict[str, Any]]]:
     """
     Fetch quesions by calling API at https://opentdb.com/
     """
 
     GENERAL_KNOWLEDGE = 9
-    url = f"https://opentdb.com/api.php?amount={num_qu}&category={GENERAL_KNOWLEDGE}&encode=url3986"
+    url = f"https://opentdb.com/api.php?amount={number_of_questions}&category={GENERAL_KNOWLEDGE}&encode=url3986"
     response = requests.get(url)
     
     if response.status_code == 200:
@@ -24,7 +24,6 @@ def get_questions(num_qu:int) -> Optional[List[Dict[str, Any]]]:
         return questions["results"]
     else:
         return None
-
 
 def plot_user_data(userdata: SessionUser, plot_size:int):
     """
@@ -48,13 +47,5 @@ def plot_user_data(userdata: SessionUser, plot_size:int):
     plt.title("accuracy of predictions".title())
     ax.set_ylabel("percentage of correct awnsers")
     ax.set_xlabel("probabilities assigned to questions")
-
-    ## Add numbers to bars
-    #for i, v in enumerate(y):
-    #    ax.text(v, 
-    #            i, 
-    #            6, 
-    #            fontsize=plot_size)
-
 
     return fig

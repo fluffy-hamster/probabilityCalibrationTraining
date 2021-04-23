@@ -1,6 +1,6 @@
 import os
 
-from Database.HelperDatabaseFunctions import *
+from Backend.Database.HelperDatabaseFunctions import *
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 

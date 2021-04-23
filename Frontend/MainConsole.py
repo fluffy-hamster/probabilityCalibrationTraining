@@ -1,8 +1,16 @@
+"""
+Play a game directly through the console (no Gui). To play simply cd to this directory and run:
+    >>> python MacinConsole.py
+
+...and follow the prompts 
+"""
+
 import sys
 from typing import Dict
 
-from HelperFunctions import get_questions, generate_probabilities, plot_user_data
-from DataSchema import SessionUser, Question
+from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
+from Backend.SessionUser import SessionUser
+#from Backend.Question import Question
 
 
 if __name__ == "__main__":
@@ -29,8 +37,6 @@ if __name__ == "__main__":
     while question_idx < number_of_questions:
     
         question = questions[question_idx]
-    
-        
         probabilities = generate_probabilities(len(question.awnser_list), PROBABILITY_OPTIONS)
 
         ## Ask Question
