@@ -4,7 +4,7 @@ import requests
 import json
 import matplotlib.pyplot as plt
 
-from .SessionUser import SessionUser
+from Backend.SessionUser import SessionUser
 
 def generate_probabilities(awnser_count:int, num_options:int) -> List[float]:
     return [round(i, 2) for i in linspace(1/awnser_count, 1, num_options)]

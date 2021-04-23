@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'TESTING_123',
+    name = 'ProbabilityCalibrationProject',
     packages = find_packages(),
 )
