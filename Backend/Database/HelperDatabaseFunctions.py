@@ -20,7 +20,6 @@ CREATE TABLE Session
     FOREIGN KEY(userId) REFERENCES User(UserId)
 )
 '''
-#FOREIGN KEY UserId REFERENCES USER(UserId)
 
 def connect_to_database(db_path: str):
     return sqlite3.connect(db_path)

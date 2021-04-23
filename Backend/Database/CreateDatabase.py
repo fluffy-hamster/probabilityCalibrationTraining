@@ -9,6 +9,7 @@ DB_PATH = os.path.join(FILE_DIR, "db", DB_NAME)
 
 if __name__ == "__main__":
 
+    # Delete if exists
     if os.path.isfile(DB_PATH):
         os.remove(DB_PATH)
 
