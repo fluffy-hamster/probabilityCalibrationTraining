@@ -1,4 +1,5 @@
 import os
+import sys
 
 from Backend.Database.HelperDatabaseFunctions import *
 
@@ -9,11 +10,13 @@ DB_PATH = os.path.join(FILE_DIR, "db", DB_NAME)
 
 if __name__ == "__main__":
 
-    # Delete if exists
-    if os.path.isfile(DB_PATH):
-        os.remove(DB_PATH)
+    db_path = DB_PATH if len(sys.argv) <= 1 else sys.argv[1]
 
-    conn = connect_to_database(DB_PATH)
+    # Delete if exists
+    if os.path.isfile(db_path):
+        os.remove(db_path)
+
+    conn = connect_to_database(db_path)
     cursor = conn.cursor()
     
     cursor.execute(USER_TABLE_SCHEMA)
