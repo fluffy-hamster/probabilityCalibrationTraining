@@ -30,11 +30,11 @@ class SessionUser():
 
     def update(self, probability: float, correct:bool):
         c = 1 if correct else 0
-        w = 1 if c == 0 else 1
+        w = 1 if not correct else 0
 
         self.update_with_vals(probability, c, w)
    
-   
+
     def update_with_vals(self, probability: float, correct: int, incorrect: int):
         self._data.setdefault(probability, {True: 0, False: 0})
         self._data[probability][True] += correct
