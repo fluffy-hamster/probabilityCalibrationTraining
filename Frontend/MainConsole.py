@@ -14,6 +14,8 @@ from Backend.SessionUser import SessionUser
 from Backend.Question import Question
 from Frontend.DatabaseAPI import DatabaseApi
 
+MAX_QUESTIONS_PER_API_CALL = 50
+
 ## DB stuff
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 DB_NAME = "TEST.db"
@@ -37,7 +39,7 @@ if __name__ == "__main__":
     session_user = SessionUser(username)
 
 
-    number_of_questions = int(input("Number of Questions: "))
+    number_of_questions = int(input(f"Number of Questions (max: {MAX_QUESTIONS_PER_API_CALL}): "))
     score = 0
     
     print("\n")
