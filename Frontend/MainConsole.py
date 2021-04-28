@@ -7,19 +7,34 @@ Play a game directly through the console (no Gui). To play simply cd to this dir
 
 import sys
 from typing import Dict
+import os
 
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
 from Backend.SessionUser import SessionUser
 from Backend.Question import Question
+from Backend.Database import HelperDatabaseFunctions
 
+# DB stuff
+FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+DB_NAME = "TEST.db"
+DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "database", "db", DB_NAME))
+
+PROBABILITY_OPTIONS = 6
 
 if __name__ == "__main__":
     
-    PROBABILITY_OPTIONS = 6
-    
     username = input("Username: ")
     session_user = SessionUser(username)
+
+    # Connect to DB
+    db_conn = HelperDatabaseFunctions.connect_to_database(DB_PATH)
+    db_cursor = db_conn.cursor()
     
+    # Add New User to Db
+    db_conn.execute(HelperDatabaseFunctions.addUserCommand(username))
+    db_conn.commit()
+
+
     number_of_questions = int(input("Number of Questions: "))
     score = 0
     
@@ -97,6 +112,15 @@ if __name__ == "__main__":
     ## Plot results
     session_plot = plot_user_data(session_user, 7)
     session_plot.show()
+
+    session_id = 1
+    user_id = 1
+    for interval, score in session_user.data.items():
+        correct_answers = score[True] 
+        wrong_answers = score[False]
+
+        db_cursor.execute(HelperDatabaseFunctions.addSessionCommand(session_id, user_id, interval, correct_answers, wrong_answers))
+        db_conn.commit()
 
     input("Press 'Enter' to exit")
     sys.exit(0)
