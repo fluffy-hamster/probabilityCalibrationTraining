@@ -21,12 +21,14 @@ class DatabaseApi():
         try:
             return self.cursor.fetchall()[0][0] # [(x,)]
         except:
+            ## User does not exist
             return -1
 
     def get_next_session_id(self, user_id: int) -> int:
         self.cursor.execute(HelperDatabaseFunctions.get_max_session_id_command(user_id))
         result = self.cursor.fetchall()
-        if result == [(None,)]:
+        if result == [(None,)]: 
+            ## Reach here when user is new and this is first session
             return 1
         else:
             return result[0][0] + 1
