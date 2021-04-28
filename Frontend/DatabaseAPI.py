@@ -25,7 +25,11 @@ class DatabaseApi():
 
     def get_next_session_id(self, user_id: int) -> int:
         self.cursor.execute(HelperDatabaseFunctions.get_max_session_id_command(user_id))
-        return self.cursor.fetchall()[0][0] + 1
+        result = self.cursor.fetchall()
+        if result == [(None,)]:
+            return 1
+        else:
+            return result[0][0] + 1
     
     def add_session_data(self, user_id: int, session_id:int, session_user: SessionUser):
  
