@@ -115,8 +115,8 @@ if __name__ == "__main__":
     #session_plot = plot_user_data(session_user, 7)
     #session_plot.show()
 
-    session_id = db.get_next_session_id(user_id) #HelperDatabaseFunctions.get_max_session_id_command(user_id) # [0][0] + 1
-    db.add_session_data(user_id, db.get_next_session_id(user_id), session_user)
+    session_id = db.get_next_session_id(user_id)
+    db.add_session_data(user_id, session_id, session_user)
 
     input("Press 'Enter' to exit")
     sys.exit(0)
