@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 
 from Backend.SessionUser import SessionUser
 
-MAX_QUESTIONS_PER_API_CALL = 50
 GENERAL_KNOWLEDGE = 9
 
 def generate_probabilities(awnser_count:int, num_options:int) -> List[float]:
