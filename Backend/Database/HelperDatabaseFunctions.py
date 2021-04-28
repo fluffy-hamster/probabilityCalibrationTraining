@@ -29,7 +29,7 @@ def connect_to_database(db_path: str):
 def addUserCommand(username: str) -> str:
     return f"""
     INSERT INTO User (username)
-    VALUES ({username})
+    VALUES ("{username}")
     """
 
 def addSessionCommand(session_id: int, user_id: int, interval: float, correct_answers: int, wrong_answers: int) -> str:
