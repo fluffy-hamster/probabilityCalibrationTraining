@@ -1,6 +1,6 @@
 """
 Play a game directly through the console (no Gui). To play simply cd to this directory and run:
-    >>> python MacinConsole.py
+    >>> python MainConsole.py
 
 ...and follow the prompts 
 """
