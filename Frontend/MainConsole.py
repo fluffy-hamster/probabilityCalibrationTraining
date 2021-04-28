@@ -12,40 +12,42 @@ import os
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
 from Backend.SessionUser import SessionUser
 from Backend.Question import Question
-from Backend.Database import HelperDatabaseFunctions
+from Frontend.DatabaseAPI import DatabaseApi
 
-# DB stuff
+## DB stuff
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 DB_NAME = "TEST.db"
 DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "database", "db", DB_NAME))
+
 
 PROBABILITY_OPTIONS = 6
 
 if __name__ == "__main__":
     
-    username = input("Username: ")
-    session_user = SessionUser(username)
-
-    # Connect to DB
-    db_conn = HelperDatabaseFunctions.connect_to_database(DB_PATH)
-    db_cursor = db_conn.cursor()
+    # Connect to DB...
+    db = DatabaseApi(DB_PATH)
     
-    # Add New User to Db
-    db_conn.execute(HelperDatabaseFunctions.addUserCommand(username))
-    db_conn.commit()
+    ## setup user...
+    username = input("Username: ")
+    user_id = db.get_user_id(username)
+    if user_id == -1:
+        db.create_new_user(username)
+        user_id = db.get_user_id(username)
+
+    session_user = SessionUser(username)
 
 
     number_of_questions = int(input("Number of Questions: "))
     score = 0
     
     print("\n")
-    
 
+    ## Fetch questions from API...
     response = get_questions(number_of_questions)
     if response is not None:
         questions: Dict[int, Question] = {i: Question(v) for i, v in enumerate(response)}
     else:
-        print("! Error connecting to API")
+        print("! Error connecting to question API")
         sys.exit(1)
 
     question_idx = 0
@@ -110,17 +112,11 @@ if __name__ == "__main__":
     print("-----------------------------------")
 
     ## Plot results
-    session_plot = plot_user_data(session_user, 7)
-    session_plot.show()
+    #session_plot = plot_user_data(session_user, 7)
+    #session_plot.show()
 
-    session_id = 1
-    user_id = 1
-    for interval, score in session_user.data.items():
-        correct_answers = score[True] 
-        wrong_answers = score[False]
-
-        db_cursor.execute(HelperDatabaseFunctions.addSessionCommand(session_id, user_id, interval, correct_answers, wrong_answers))
-        db_conn.commit()
+    session_id = db.get_next_session_id(user_id) #HelperDatabaseFunctions.get_max_session_id_command(user_id) # [0][0] + 1
+    db.add_session_data(user_id, db.get_next_session_id(user_id), session_user)
 
     input("Press 'Enter' to exit")
     sys.exit(0)
