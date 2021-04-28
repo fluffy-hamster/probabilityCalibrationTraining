@@ -6,7 +6,7 @@ Play a game directly through the console (no Gui). To play simply cd to this dir
 """
 
 import sys
-from typing import Dict
+from typing import Dict, Optional
 import os
 
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
@@ -15,6 +15,7 @@ from Backend.Question import Question
 from Frontend.DatabaseAPI import DatabaseApi
 
 MAX_QUESTIONS_PER_API_CALL = 50
+PROBABILITY_OPTIONS = 6
 
 ## DB stuff
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
@@ -22,7 +23,15 @@ DB_NAME = "TEST.db"
 DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "database", "db", DB_NAME))
 
 
-PROBABILITY_OPTIONS = 6
+def print_stats(title: str, score: Optional[float], session_user: SessionUser):
+    print("-----------------------------------")
+    print(f"{title}:")
+    if score is not None:
+        print(f"\tFinal Score: {score}")
+    print("\t" + str(session_user).replace("\n", "\n\t"))
+    print("-----------------------------------")
+
+
 
 if __name__ == "__main__":
     
@@ -101,24 +110,36 @@ if __name__ == "__main__":
         
         question_idx += 1
         
-        print("\nMoving on to next question...\n")
+        if question_idx < number_of_questions:
+            print("\nMoving on to next question...\n")
         
     
     
     print("GAME OVER!")
-
-    print("-----------------------------------")
-    print("Session Stats:")
-    print(f"\tFinal Score: {score}")
-    print("\t" + str(session_user).replace("\n", "\n\t"))
-    print("-----------------------------------")
+    print_stats("Session Stats", score, session_user)
 
     ## Plot results
     #session_plot = plot_user_data(session_user, 7)
     #session_plot.show()
 
+    ## Fetch all sessions for user
+    header, entries = db.get_all_session_data(user_id)
+    interval_idx = header.index("interval")
+    correct_idx = header.index("correctAnswers")
+    wrong_idx = header.index("wrongAnswers")
+
+    for db_row in entries:
+        session_user.update_with_vals(db_row[interval_idx], db_row[correct_idx], db_row[wrong_idx])
+
+    print_stats("All Sessions Combined", None, session_user)
+
+    ## Plot results (all sessions combined)
+    #session_plot = plot_user_data(session_user, 7)
+    #session_plot.show()
+
     session_id = db.get_next_session_id(user_id)
     db.add_session_data(user_id, session_id, session_user)
+
 
     input("Press 'Enter' to exit")
     sys.exit(0)
