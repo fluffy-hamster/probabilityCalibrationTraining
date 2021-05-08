@@ -26,7 +26,7 @@ ToDo
 # How to use
 
 * To run, first you will need to setup the local database. This can be done by running the *backend/database/createDatabase.py* script
-* Once the database is setup, you can run the *frontend/MainConsole.py* from the command line. 
+* On the command line, cd to the main dir (i.e. *probabilityCalibrationTraining*) then run *python ./frontend/MainConsole.py* 
 
 # Future/work in progress
 
