@@ -12,7 +12,7 @@ import os
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
 from Backend.SessionUser import SessionUser
 from Backend.Question import Question
-from Frontend.DatabaseAPI import DatabaseApi
+from Backend.Database.DatabaseAPI import DatabaseApi
 
 MAX_QUESTIONS_PER_API_CALL = 50
 PROBABILITY_OPTIONS = 6
@@ -20,7 +20,7 @@ PROBABILITY_OPTIONS = 6
 ## DB stuff
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 DB_NAME = "TEST.db"
-DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "database", "db", DB_NAME))
+DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "Database", DB_NAME))
 
 
 def print_stats(title: str, score: Optional[float], session_user: SessionUser):
