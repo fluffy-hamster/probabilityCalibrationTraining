@@ -1,0 +1,10 @@
+<h1>{header}</h1>
+<form action='/quiz' method='POST'>
+    <ol>
+            <li>{question}</li>
+            {% for j in awnserList[i] %}
+                <input type='radio' value='{{j}}' name='{{i}}' />{{j}}
+            {% endfor %}
+    </ol>
+    <input type="submit" value="submit" />
+</form>
