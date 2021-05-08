@@ -4,7 +4,7 @@ ToDo
 
 # What is calibration training?
 
-Calibrated probability assessments are subjective probabilities assigned by individuals who have been trained to assess probabilities in a way that historically represents their uncertainty. For example, when a person has calibrated a situation and says they are "80% confident" in each of 100 predictions they made, they will get about 80% of them correct. Likewise, they will be right 90% of the time they say they are 90% certain, and so on.
+> Calibrated probability assessments are subjective probabilities assigned by individuals who have been trained to assess probabilities in a way that historically represents their uncertainty. For example, when a person has calibrated a situation and says they are "80% confident" in each of 100 predictions they made, they will get about 80% of them correct. Likewise, they will be right 90% of the time they say they are 90% certain, and so on.
 
 Calibration training improves subjective probabilities because most people are either "overconfident" or "under-confident" (usually the former).By practicing with a series of trivia questions, it is possible for subjects to fine-tune their ability to assess probabilities. For example, a subject may be asked:
 
