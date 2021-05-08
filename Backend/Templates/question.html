@@ -2,12 +2,12 @@
 <form action='/quiz' method='POST'>
     <h2>{{ questionText }}</h2>
     {% for option in answerList %}
-    <input type='radio' value='{{option}}' name='{{option}}'/>{{option}}
+    <input type='radio' value='{{option}}' name='x' required/>{{option}}
     {% endfor %}
     
     <h2> How confident are you that your selected answer is correct? </h2>
     {% for prob in probabilityOptions %}
-    <input type='radio' value='{{prob}}' name='{{prob}}'/>{{prob}}
+    <input type='radio' value='{{prob}}' name='y' required/>{{prob}}
     {% endfor %}
 
     <br>
