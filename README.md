@@ -1,6 +1,1 @@
-# confidenceTraining
- 
-## Todo:
-
-use Token
-Save user data
+https://en.wikipedia.org/wiki/Calibrated_probability_assessment
