@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 from typing import Dict
 
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
@@ -35,16 +35,33 @@ def fetch_questions():
   questions: Dict[int, Question] = {i: Question(v) for i, v in enumerate(question_response)}
   question = questions[0]
 
-  return f"<h2>QUESTION 1: {question.question}</h2>" + "\n".join([f"\t{i+1}: {question.awnser_list[i]}" for i in range(len(question.awnser_list))])
+  return f"<h2>QUESTION 1: {question.question}</h2>" + "\n".join([f"\t{i+1}: {question.answer_list[i]}" for i in range(len(question.answer_list))])
 
 
+@app.route('/quiz', methods=['POST', 'GET'])
+#def quiz(qu: Question, idx: int):
+def quiz():
+
+  question_response = get_questions(1)
+  if question_response is None:
+    return Response("Failed to get Questions", status=500)
+
+  idx = 1
+  questions: Dict[int, Question] = {i: Question(v) for i, v in enumerate(question_response)}
+  question = questions[0]
+
+  return render_template('question.html', header= "QUESTION {idx}", questionText = question.question, answerList = question.answer_list)
+
+
+
+"""
 @app.route('/userData/',  methods=['GET'])
 def say_hello():
   user_id = request.args.get("userId")
   session_id = request.args.get("sessionId") 
   
   return f'''<h1>Request Args| user_id: {user_id} | session_id: {session_id}</h1>'''
-
+"""
 
 """
 https://www.digitalocean.com/community/tutorials/processing-incoming-request-data-in-flask

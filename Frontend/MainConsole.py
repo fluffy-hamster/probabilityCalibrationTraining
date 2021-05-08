@@ -65,15 +65,15 @@ if __name__ == "__main__":
     while question_idx < number_of_questions:
     
         question = questions[question_idx]
-        probabilities = generate_probabilities(len(question.awnser_list), PROBABILITY_OPTIONS)
+        probabilities = generate_probabilities(len(question.answer_list), PROBABILITY_OPTIONS)
 
         ## Ask Question
         print("======================")
         print(f"QUESTION {question_idx + 1}: {question.question}")
-        awns_str = "\n".join([f"\t{i+1}: {question.awnser_list[i]}" for i in range(len(question.awnser_list))])
+        awns_str = "\n".join([f"\t{i+1}: {question.answer_list[i]}" for i in range(len(question.answer_list))])
         
         selected_awnser = -1
-        while selected_awnser not in range(1, len(question.awnser_list)+1):
+        while selected_awnser not in range(1, len(question.answer_list)+1):
             selected_awnser = int(input(awns_str + "\n\n"))
 
         ## Confidence
@@ -85,7 +85,7 @@ if __name__ == "__main__":
             confidence = int(input(conf_level_str  + "\n\n"))
 
         ## Check Awnser
-        chosen_awnser = question.awnser_list[selected_awnser - 1]
+        chosen_awnser = question.answer_list[selected_awnser - 1]
         correct = chosen_awnser == question.correct_answer
 
         ## Update score
