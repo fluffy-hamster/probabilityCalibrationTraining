@@ -31,7 +31,7 @@ ToDo
 # Screenshot
 
 running from command prompt: 
-![screenshot](_misc\ExampleGame.jpg?raw=true "screenshot")
+![screenshot](./_misc\ExampleGame.jpg?raw=true "screenshot")
 
 # Work in progress
 
