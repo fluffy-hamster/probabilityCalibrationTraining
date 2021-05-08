@@ -28,6 +28,11 @@ ToDo
 * To run, first you will need to setup the local database. This can be done by running the *backend/database/createDatabase.py* script
 * On the command line, cd to the main dir (i.e. */probabilityCalibrationTraining/*) then run *python ./frontend/MainConsole.py* 
 
-# Future/work in progress
+# Screenshot
+
+running from command prompt: 
+![screenshot](_misc\ExampleGame.jpg?raw=true "screenshot")
+
+# Work in progress
 
 * Convert application to run on the Web (using Flask)
