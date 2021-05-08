@@ -1,10 +1,14 @@
 <h1>{{ header }}</h1>
 <form action='/quiz' method='POST'>
-    {{ questionText }}
-    <ol>
-    {% for j in answerList %}
-    <input type='radio' value='a' name='b'/>
+    <h2>{{ questionText }}</h2>
+    {% for option in answerList %}
+    <input type='radio' value='{{option}}' name='{{option}}'/>{{option}}
     {% endfor %}
-    </ol>
+    
+    <h2> How confident are you that your selected answer is correct? </h2>
+    {% for prob in probabilityOptions %}
+    <input type='radio' value='{{prob}}' name='{{prob}}'/>{{prob}}
+    {% endfor %}
+
     <input type="submit" value="submit" />
 </form>

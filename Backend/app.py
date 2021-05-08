@@ -6,24 +6,17 @@ from Backend.HelperFunctions import get_questions, generate_probabilities, plot_
 from Backend.Question import Question
 from Backend.Database.DatabaseAPI import DatabaseApi
 
-DOCUMENTATION = """
+MAX_QUESTIONS_PER_API_CALL = 50
+PROBABILITY_OPTIONS = 6
 
-# Grab a question: 
-Example Query:
-    http://127.0.0.1:5000/questions/?numberOfQuestions=1
-
-"""
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return 'Backend Running! For help about the Api, navagitate to <url>/help/'
+  return 'Backend Running!'
 
-@app.route('/help/',  methods=['GET'])
-def get_help_text():
-  return DOCUMENTATION
-  
+
 @app.route('/questions/',  methods=['GET'])
 def fetch_questions():
   number_of_questions = int(request.args.get("numberOfQuestions", -1))
@@ -50,7 +43,11 @@ def quiz():
   questions: Dict[int, Question] = {i: Question(v) for i, v in enumerate(question_response)}
   question = questions[0]
 
-  return render_template('question.html', header= "QUESTION {idx}", questionText = question.question, answerList = question.answer_list)
+  probabilities = generate_probabilities(len(question.answer_list), PROBABILITY_OPTIONS)
+
+  return render_template('question.html', header= f'QUESTION {idx}', \
+    questionText = question.question, answerList = question.answer_list, \
+      probabilityOptions = probabilities)
 
 
 
