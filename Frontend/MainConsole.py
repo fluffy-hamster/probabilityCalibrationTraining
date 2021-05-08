@@ -12,7 +12,7 @@ import os
 from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
 from Backend.SessionUser import SessionUser
 from Backend.Question import Question
-from Frontend.DatabaseAPI import DatabaseApi
+from Backend.Database.DatabaseAPI import DatabaseApi
 
 MAX_QUESTIONS_PER_API_CALL = 50
 PROBABILITY_OPTIONS = 6
@@ -20,7 +20,7 @@ PROBABILITY_OPTIONS = 6
 ## DB stuff
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 DB_NAME = "TEST.db"
-DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "database", "db", DB_NAME))
+DB_PATH = os.path.normpath(os.path.join(FILE_DIR, "..", "Backend", "Database", DB_NAME))
 
 
 def print_stats(title: str, score: Optional[float], session_user: SessionUser):
@@ -65,15 +65,15 @@ if __name__ == "__main__":
     while question_idx < number_of_questions:
     
         question = questions[question_idx]
-        probabilities = generate_probabilities(len(question.awnser_list), PROBABILITY_OPTIONS)
+        probabilities = generate_probabilities(len(question.answer_list), PROBABILITY_OPTIONS)
 
         ## Ask Question
         print("======================")
         print(f"QUESTION {question_idx + 1}: {question.question}")
-        awns_str = "\n".join([f"\t{i+1}: {question.awnser_list[i]}" for i in range(len(question.awnser_list))])
+        awns_str = "\n".join([f"\t{i+1}: {question.answer_list[i]}" for i in range(len(question.answer_list))])
         
         selected_awnser = -1
-        while selected_awnser not in range(1, len(question.awnser_list)+1):
+        while selected_awnser not in range(1, len(question.answer_list)+1):
             selected_awnser = int(input(awns_str + "\n\n"))
 
         ## Confidence
@@ -85,7 +85,7 @@ if __name__ == "__main__":
             confidence = int(input(conf_level_str  + "\n\n"))
 
         ## Check Awnser
-        chosen_awnser = question.awnser_list[selected_awnser - 1]
+        chosen_awnser = question.answer_list[selected_awnser - 1]
         correct = chosen_awnser == question.correct_answer
 
         ## Update score

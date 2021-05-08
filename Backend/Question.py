@@ -44,5 +44,5 @@ class Question():
         return self._correct_answer
 
     @property
-    def awnser_list(self) -> List[str]:
+    def answer_list(self) -> List[str]:
         return self._awnser_list

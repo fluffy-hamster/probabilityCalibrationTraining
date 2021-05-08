@@ -6,7 +6,7 @@ from Backend.Database.HelperDatabaseFunctions import *
 FILE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 
 DB_NAME = "TEST.db"
-DB_PATH = os.path.join(FILE_DIR, "db", DB_NAME)
+DB_PATH = os.path.join(FILE_DIR, DB_NAME)
 
 if __name__ == "__main__":
 
