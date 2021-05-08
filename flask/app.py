@@ -1,5 +1,4 @@
 from flask import Flask, request
-from flask.globals import session
 
 app = Flask(__name__)
 
