@@ -70,11 +70,11 @@ if __name__ == "__main__":
         ## Ask Question
         print("======================")
         print(f"QUESTION {question_idx + 1}: {question.question}")
-        awns_str = "\n".join([f"\t{i+1}: {question.answer_list[i]}" for i in range(len(question.answer_list))])
+        answer_str = "\n".join([f"\t{i+1}: {question.answer_list[i]}" for i in range(len(question.answer_list))])
         
-        selected_awnser = -1
-        while selected_awnser not in range(1, len(question.answer_list)+1):
-            selected_awnser = int(input(awns_str + "\n\n"))
+        selected_answer = -1
+        while selected_answer not in range(1, len(question.answer_list)+1):
+            selected_answer = int(input(answer_str + "\n\n"))
 
         ## Confidence
         print("How confident are you in your awnser: \n")
@@ -85,8 +85,8 @@ if __name__ == "__main__":
             confidence = int(input(conf_level_str  + "\n\n"))
 
         ## Check Awnser
-        chosen_awnser = question.answer_list[selected_awnser - 1]
-        correct = chosen_awnser == question.correct_answer
+        chosen_answer = question.answer_list[selected_answer - 1]
+        correct = chosen_answer == question.correct_answer
 
         ## Update score
         session_user.update(probabilities[confidence - 1], correct)
