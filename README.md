@@ -25,7 +25,7 @@ ToDo
 
 # How to use
 
-* To run, first you will need to setup the local database. Please see the readme in 'backend' directory.
+* To run, first you will need to setup the local database. This can be done by running the backend/database/createDatabase.py script
 * Once the database is setup, you can run the frontend/MainConsole.py from the command line. 
 
 # Future/work in progress
