@@ -1,7 +1,7 @@
 from typing import Optional, List, Tuple
 
-from backend.Database import HelperDatabaseFunctions
-from backend.SessionUser import SessionUser
+from Backend.Database import HelperDatabaseFunctions
+from Backend.SessionUser import SessionUser
 
 
 class DatabaseApi():

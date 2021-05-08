@@ -1,10 +1,10 @@
 from flask import Flask, request, Response
 from typing import Dict
 
-from backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
+from Backend.HelperFunctions import get_questions, generate_probabilities, plot_user_data
 #from Backend.SessionUser import SessionUser
-from backend.Question import Question
-from backend.Database.DatabaseAPI import DatabaseApi
+from Backend.Question import Question
+from Backend.Database.DatabaseAPI import DatabaseApi
 
 DOCUMENTATION = """
 
