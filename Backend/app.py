@@ -31,9 +31,9 @@ def fetch_questions():
   return f"<h2>QUESTION 1: {question.question}</h2>" + "\n".join([f"\t{i+1}: {question.answer_list[i]}" for i in range(len(question.answer_list))])
 
 
-@app.route('/quiz', methods=['POST', 'GET'])
+@app.route('/askQuestion', methods=['POST', 'GET'])
 #def quiz(qu: Question, idx: int):
-def quiz():
+def ask_question():
 
   question_response = get_questions(1)
   if question_response is None:
@@ -50,6 +50,9 @@ def quiz():
       probabilityOptions = probabilities)
 
 
+@app.route("/answer", methods=["POST"])
+def give_awnser():
+  return request.form
 
 """
 @app.route('/userData/',  methods=['GET'])
