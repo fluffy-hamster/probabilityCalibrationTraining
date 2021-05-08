@@ -1,7 +1,7 @@
-<h1>% header %</h1>
+<h1>{{ header }}</h1>
 <form action='/quiz' method='POST'>
     <ol>
-            <li>{questionText}</li>
+            <li>{{ questionText }}</li>
             {% for j in answerList[i] %}
                 <input type='radio' value='{{j}}' name='{{i}}' />{{j}}
             {% endfor %}
