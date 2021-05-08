@@ -4,7 +4,7 @@ import requests
 import json
 import matplotlib.pyplot as plt
 
-from Backend.SessionUser import SessionUser
+from backend.SessionUser import SessionUser
 
 GENERAL_KNOWLEDGE = 9
 

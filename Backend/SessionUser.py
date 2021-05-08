@@ -41,9 +41,6 @@ class SessionUser():
         self._data[probability][False] += incorrect
 
 
-
-
-
     def __str__(self):
         """
         Returns self, with some very basic statistics
